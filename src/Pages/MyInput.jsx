@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useId } from "react";
 
 export const MyInput = forwardRef(function MyInput(
   {
@@ -12,16 +12,23 @@ export const MyInput = forwardRef(function MyInput(
   },
   ref
 ) {
+  const id = useId();
   return (
     <>
       <div className="w-full">
         {label && (
-          <label className={`mr-2 font-serif ${labeldesign}`}>{label}</label>
+          <label
+            htmlFor={id}
+            className={`block text-sm font-medium ${labeldesign}`}
+          >
+            {label}
+          </label>
         )}
 
         <input
           type={type}
-          className={`pl-3  outline-none ${design}`}
+          id={id}
+          className={`w-full px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 ${design}`}
           placeholder={placeholder}
           ref={ref}
           {...props}
