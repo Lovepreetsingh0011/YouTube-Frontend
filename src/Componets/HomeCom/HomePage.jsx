@@ -3,10 +3,12 @@ import { motion } from "framer-motion";
 import { VideoCard } from "./VideoCard";
 import { Vite } from "../../Constanst/APi_Varibles";
 import axios from "axios";
+
+axios.defaults.withCredentials = true;
+axios.defaults.baseURL = Vite.API_URL; // ✅ Ensure this is correctly defined
+
 export const HomePage = () => {
-  axios.defaults.withCredentials = true;
   const [videos, setvideos] = useState([]);
-  axios.defaults.baseURL = Vite.API_URL;
 
   const GetAllVideos = async () => {
     try {
