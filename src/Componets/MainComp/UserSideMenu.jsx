@@ -46,10 +46,13 @@ export const UserSideMenu = ({
               <h2 className="font-serif pl-2">LogOut</h2>
             </button>
             {/* Forgot Password */}
-            <div className="flex pl-2 w-full mt-5  items-center  ">
+            <Link
+              to={"/OtpSend"}
+              className="flex pl-2 w-full mt-5  items-center  "
+            >
               <FaExchangeAlt className=" text-xl mr-2" />
               <h2 className="font-serif pl-2">ChangePassword</h2>
-            </div>
+            </Link>
           </>
         ) : (
           <>
@@ -65,6 +68,13 @@ export const UserSideMenu = ({
             >
               <SiGnuprivacyguard className=" text-xl mr-2" />
               <h2 className="font-serif pl-2">SignUp</h2>
+            </Link>
+            <Link
+              to={"/OtpSend"}
+              className="flex pl-2 w-full mt-5  items-center  "
+            >
+              <FaExchangeAlt className=" text-xl mr-2" />
+              <h2 className="font-serif pl-2">ChangePassword</h2>
             </Link>
           </>
         )}

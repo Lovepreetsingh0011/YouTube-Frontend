@@ -43,12 +43,15 @@ export const SideMenu = () => {
             DashBoard
           </li>
         </Link>
-        <div className=" mx-2 py-2 flex pt-7  hover:bg-gray-300 hover:text-black  rounded-lg items-center">
+        <Link
+          to="/WatchHistory"
+          className=" mx-2 py-2 flex pt-7  hover:bg-gray-300 hover:text-black  rounded-lg items-center"
+        >
           <FaHistory className="text-3xl ml-4 " />
           <li className="hover:text-black mt-1 pl-3  mr-4 font-serif">
             History
           </li>
-        </div>
+        </Link>
         <Link
           to={"/UserPostDashboard/UserPlayList"}
           className=" mx-2 py-2 flex  hover:bg-gray-300 hover:text-black  rounded-lg items-center"

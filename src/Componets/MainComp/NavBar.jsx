@@ -55,6 +55,7 @@ export const NavBar = () => {
       dispatch(SetUser(JSON.parse(result)));
     }
   }, []);
+  useEffect(() => {}, []);
   return (
     <>
       <div>

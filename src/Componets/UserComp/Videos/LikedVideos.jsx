@@ -4,6 +4,7 @@ import { UserWrapper } from "../UserWrapper";
 import axios from "axios";
 import { Vite } from "../../../Constanst/APi_Varibles";
 import { div } from "framer-motion/client";
+import { Link } from "react-router-dom";
 
 export const LikedVideos = () => {
   axios.defaults.baseURL = Vite.API_URL;
@@ -58,9 +59,12 @@ export const LikedVideos = () => {
           {/* Video List */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {videos?.map((video, index) => (
-              <div className="p-6 rounded-xl dark:border-[0.5px] dark:bg-zinc-900 border-gray-800">
+              <Link
+                to={`/VideoSlug/${video?.VideoDetails?._id}`}
+                key={video?.VideoDetails?._id}
+                className="p-6 rounded-xl dark:border-[0.5px] dark:bg-zinc-900 border-gray-800"
+              >
                 <motion.div
-                  key={video?.VideoDetails?._id}
                   className="relative border-[0.5px] dark:border-gray-700 rounded-lg overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300"
                   whileHover={{ scale: 1.05 }}
                 >
@@ -83,7 +87,7 @@ export const LikedVideos = () => {
                     </p>
                   </div>
                 </motion.div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

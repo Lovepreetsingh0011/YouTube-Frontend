@@ -1,3 +1,4 @@
 import { HomePage } from "./HomePage";
 import { VideoCard } from "./VideoCard";
-export { HomePage, VideoCard };
+import { VideoSlug } from "./VideoSlug";
+export { HomePage, VideoCard, VideoSlug };

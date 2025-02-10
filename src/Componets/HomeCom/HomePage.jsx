@@ -1,7 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { VideoCard } from "./VideoCard";
+import axios from "axios";
 export const HomePage = () => {
+  axios.defaults.withCredentials = true;
+  const [videos, setvideos] = useState([]);
+  const GetAllVideos = async () => {
+    try {
+      const result = await axios.get("Videos/GetAllVideos");
+      if (result?.data?.Success) {
+        setvideos(result?.data?.Data?.videos);
+      } else {
+        localStorage.removeItem("user");
+      }
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const videoData = [
     {
       title: "Day 2 Spoken English Course",
@@ -39,10 +56,13 @@ export const HomePage = () => {
       thumbnail: "https://via.placeholder.com/600x350",
     },
   ];
+  useEffect(() => {
+    GetAllVideos();
+  }, []);
 
   return (
     <>
-      <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+      <div className="min-h-screen px-[5vw] bg-gray-100 dark:bg-gray-950 text-gray-800 dark:text-gray-200">
         {/* Header */}
         <header className="p-4 flex justify-between items-center bg-gray-200 dark:bg-gray-800 shadow-md">
           <h1 className="text-2xl font-bold">Video Grid</h1>
@@ -50,7 +70,7 @@ export const HomePage = () => {
 
         {/* Video Grid with Stagger Animation */}
         <motion.main
-          className="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6"
+          className="p-6 grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8"
           initial="hidden"
           animate="visible"
           variants={{
@@ -61,8 +81,8 @@ export const HomePage = () => {
             },
           }}
         >
-          {videoData.map((video, index) => (
-            <VideoCard key={index} {...video} />
+          {videos?.map((video, index) => (
+            <VideoCard key={video?._id} video={video} />
           ))}
         </motion.main>
       </div>
