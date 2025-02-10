@@ -14,6 +14,7 @@ export const Login = () => {
   const { SuccessMsg, WarningMsg, ErrorMsg } = UsePopUp();
   const navigate = useNavigate();
   axios.defaults.baseURL = Vite.API_URL;
+
   axios.defaults.withCredentials = true;
   const dispatch = useDispatch();
 
@@ -30,11 +31,18 @@ export const Login = () => {
   const LoginHandler = async (data) => {
     try {
       setloading(true);
-      const result = await axios.post("Users/Login", {
-        UserName: state?.UserName?.trim() != "" ? state.UserName : null,
-        Email: state?.Email?.trim() != "" ? state.Email : null,
-        Password: data?.Password?.trim(),
-      });
+      const result = await axios.post(
+        "Users/Login",
+        {
+          UserName: state?.UserName?.trim() != "" ? state.UserName : null,
+          Email: state?.Email?.trim() != "" ? state.Email : null,
+          Password: data?.Password?.trim(),
+        },
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
       setloading(false);
       if (result?.data?.Success) {
         localStorage.setItem("user", JSON.stringify(result?.data?.Data?.User));

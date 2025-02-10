@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { UsePopUp } from "../../Store/Context/PopUpContext";
-
 export function OtpSend() {
   axios.defaults.withCredentials = true;
   const { SuccessMsg, ErrorMsg } = UsePopUp();
@@ -21,6 +20,10 @@ export function OtpSend() {
         `${import.meta.env.VITE_API_URL}Users/SendOTP`,
         {
           Email,
+        },
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
         }
       );
       console.log(res);
@@ -45,6 +48,10 @@ export function OtpSend() {
         {
           Email,
           OTP,
+        },
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
         }
       );
 
