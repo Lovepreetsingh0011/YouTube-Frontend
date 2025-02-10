@@ -39,6 +39,7 @@ export const Signup = () => {
           },
         }
       );
+
       setloading(false);
       if (result?.data?.Success) {
         SuccessMsg("Register Successfully");
