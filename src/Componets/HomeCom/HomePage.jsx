@@ -10,7 +10,10 @@ export const HomePage = () => {
 
   const GetAllVideos = async () => {
     try {
-      const result = await axios.get("Videos/GetAllVideos");
+      const result = await axios.get("Videos/GetAllVideos", {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      });
       if (result?.data?.Success) {
         setvideos(result?.data?.Data?.videos);
       } else {

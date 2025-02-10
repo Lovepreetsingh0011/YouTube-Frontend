@@ -31,18 +31,11 @@ export const Login = () => {
   const LoginHandler = async (data) => {
     try {
       setloading(true);
-      const result = await axios.post(
-        "Users/Login",
-        {
-          UserName: state?.UserName?.trim() != "" ? state.UserName : null,
-          Email: state?.Email?.trim() != "" ? state.Email : null,
-          Password: data?.Password?.trim(),
-        },
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
-      );
+      const result = await axios.post("Users/Login", {
+        UserName: state?.UserName?.trim() != "" ? state.UserName : null,
+        Email: state?.Email?.trim() != "" ? state.Email : null,
+        Password: data?.Password?.trim(),
+      });
       setloading(false);
       if (result?.data?.Success) {
         localStorage.setItem("user", JSON.stringify(result?.data?.Data?.User));
