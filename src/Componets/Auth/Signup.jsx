@@ -9,8 +9,11 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Loader } from "../Loader";
 import { UsePopUp } from "../../Store/Context/PopUpContext";
-
+import { Vite } from "../../Constanst/APi_Varibles";
 export const Signup = () => {
+  axios.defaults.baseURL = Vite.API_URL;
+
+  axios.defaults.withCredentials = true;
   const [loding, setloading] = useState(false);
   const { SuccessMsg, WarningMsg, ErrorMsg } = UsePopUp();
   const navigate = useNavigate();
